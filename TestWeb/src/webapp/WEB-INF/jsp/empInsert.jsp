@@ -6,10 +6,14 @@
 <meta charset="UTF-8">
 <title>empInsert.jsp</title>
 <style>
-	form#empInsert > div{
+	form#empInsert > label{
 		display: inline-block;
 		width: 70px;
 		text-align: center;
+		padding: 0px 20px;
+		margin-right: 20px;
+		background-color: orangered;
+		color: white;
 	}
 	
 	form#empInsert > input[type=submit]{
@@ -22,9 +26,11 @@
 <body>
 <h1>사원등록</h1>
 <form id="empInsert">
-	<div><label>사번</label></div><input type="text"><br><br>
-	<div><label>이름</label></div><input type="text"><br><br>
-	<div><label>급여</label></div><input type="text"><br><br>
+	<label>사원번호</label><input type="text"><br><br>
+	<label>이름</label><input type="text"><br><br>
+	<label>이메일</label><input type="text"><br><br>
+	<label>입사일</label><input type="date"><br><br>
+	<label>직업번호</label><input type="text"><br><br>
 	<input type="submit" value="등록">
 </form>
 </body>
