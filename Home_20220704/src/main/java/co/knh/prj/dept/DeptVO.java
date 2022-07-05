@@ -1,4 +1,4 @@
-package co.knh.prj;
+package co.knh.prj.dept;
 
 public class DeptVO {
 	//필드

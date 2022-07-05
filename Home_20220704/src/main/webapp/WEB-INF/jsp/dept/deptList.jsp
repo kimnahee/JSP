@@ -8,7 +8,8 @@
 <title>DeptList</title>
 </head>
 <body>
-	<h3>부서목록</h3>
+	<h4>부서목록</h4>
+	<a href="DeptInsert">부서등록</a>
 	<table>
 		<thead>
 			<tr>
