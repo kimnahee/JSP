@@ -1,0 +1,38 @@
+ 1. <a>태그 사용
+ 2. location ref : 
+ => get 
+form tag : method = "post"
+		  (post 방식으로 접속가능)
+		  
+form tag의 input
+name 필수(vo name과 동일하게 생성하면 됨)
+
+사원등록 구현
+=> 부서등록(DeptInsertServ), DeptDAO 의 deptInsert
+Empinsert 완성
+서블릿 추가 > empInsertServ
+			:doPost 추가
+
+=========
+입력값 검정 
+Ajax 이용 or 자바스크립트 이용
+
+https://www.w3schools.com/js/js_validation.asp
+참고
+
+==========
+sources => console 
+
+setAttribute/getAttribute
+=>
+http://hsprnote.blogspot.com/2017/03/jsp-getparameter-getattribute.html
+
+dept >> input type radio로
+==========
+request
+getParameter, get/setAttribute
+
+==========
+
+사원수정
+

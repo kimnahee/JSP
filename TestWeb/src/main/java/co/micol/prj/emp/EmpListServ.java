@@ -1,4 +1,4 @@
-package co.micol.prj;
+package co.micol.prj.emp;
 
 import java.io.IOException;
 
@@ -19,7 +19,10 @@ public class EmpListServ extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EmpDAO dao = new EmpDAO();
 		
-		request.setAttribute("list", dao.selectAll());
+		//parameter : request
+		//form의 name값
+		String id = request.getParameter("departmentId");
+		request.setAttribute("list", dao.selectAll(id));
 		request.getRequestDispatcher("/WEB-INF/jsp/empList.jsp").forward(request, response);
 	}
 
