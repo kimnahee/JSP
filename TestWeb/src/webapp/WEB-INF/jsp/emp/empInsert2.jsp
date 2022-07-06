@@ -3,7 +3,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,9 +87,11 @@ function validateForm(){
 	<label>입사일</label><input type="date" name="hireDate"><br>
 	<label>직무</label>
 	<select name="jobId">
-			<c:forEach items="${jobs}" var="job">
-				<option value="${job.getJobId()}">${job.getJobTitle()}
-			</c:forEach>
+			<% ArrayList<JobsVO> list = (ArrayList<JobsVO>)request.getAttribute("jobs"); //강제 형변환 | getAttribute는 객체값을 가져오기 때문에/jobs 값을 가지고 옴
+				for(JobsVO jobs : list) { %>
+				<!-- option tag 반복 / jobs 객체에서 list만큼 가지고 와서 반복 -->
+				<option value="<%=jobs.getJobId()%>"><%=jobs.getJobTitle()%>
+			<% } %>
 	</select><br>
 	<label>부서</label>
 	<% ArrayList<DeptVO> deptlist = (ArrayList<DeptVO>)request.getAttribute("depts");

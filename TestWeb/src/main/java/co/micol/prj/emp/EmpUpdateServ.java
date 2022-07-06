@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.micol.prj.dept.DeptDAO;
 
-@WebServlet("/empInsert")
-public class EmpInsertServ extends HttpServlet {
+@WebServlet("/empUpdate")
+public class EmpUpdateServ extends HttpServlet {
 
-	// 등록 페이지로 이동
+	//수정페이지로 이동
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -25,12 +25,13 @@ public class EmpInsertServ extends HttpServlet {
 		request.setAttribute("jobs", dao.selectJobs()); 
 		request.setAttribute("depts", deptDAO.selectDept()); 
 		//deptDAO 의 selectDept() 결과를 "depts"라는 이름으로 넘겨줌(request에 담겨서 같이 넘어감)
- 		
-		//forward : 계속 empInsert 페이지로 감
-		request.getRequestDispatcher("/WEB-INF/jsp/emp/empInsert.jsp").forward(request, response);
+		//사번 단건조회
+		String employeeId = request.getParameter("employeeId");
+ 		request.setAttribute("emp", dao.selectOne(employeeId));
+		request.getRequestDispatcher("/WEB-INF/jsp/emp/empUpdate.jsp").forward(request, response);
 	}
 
-	// 등록 처리
+	// 수정처리
 	// source => override => dopost 추가
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -58,13 +59,10 @@ public class EmpInsertServ extends HttpServlet {
 		
 		//DB 처리(insert를 진행하면 cnt 반환 >> 성공하면 1, 실패하면 0
 		EmpDAO dao = new EmpDAO();
-		int cnt = dao.insert(vo); //
+		int cnt = dao.update(vo); //
 		
-//		response.getWriter()
-//				.append(cnt+"건 등록");
-		
-		response.sendRedirect("empList");
-		
+		response.getWriter()
+				.append(cnt+"건 등록");
 	}
 
 }

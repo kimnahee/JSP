@@ -1,0 +1,143 @@
+스크립틀릿 태그
+
+	<%
+		for(int i=0; i<10; i++){
+	%>
+			<li><%=i%></li>
+	<% 
+		}
+	%>	
+	
+	<%= %> = out.print와 동일
+	
+- JAVA 코드는 <% %> 안에 / 태그는 밖에 작성
+
+http://localhost/TestWeb/empUpdate?employeeId=102
+empUpdate 서블릿 실행해서 ?뒷부분 입력하면 폼 안에 입력됨
+EmpVO에 jobid, deptid 받아오도록 수정하기
+(파라미터 추가)
+
+
+- Servlet 어노테이션에서의 / 의미
+http://localhost/[ContextPath]
+=> ContextPath 다음을 의미
+
+- HTML에서의 / 의미
+httP://localhost => 다음을 의미
+<a href="/empInsert"></a>
+=> http://localhost/empInsert
+
+/ 사용하려면 contextpath도 같이 적어줘야함
+
+====
+
+* EmpUpdate(사원수정)
+employeeId = 수정 x, readonly로 변경
+radio와 select: 내가 선택한 값이 보여야 함
+if, checked 활용
+
+사원의 부서(vo의 부서번호)와 radio(value)가 동일하면 checked가 들어가도록
+job id
+
+vo의 job id와 select 의 value(job 객체의 jobId를 get) 가 동일하면 selected 상태가 됨
+
+*JavaScript 사용 x => 참고용
+
+**select tag
+	<select name="jobId">
+			<% ArrayList<JobsVO> list = (ArrayList<JobsVO>)request.getAttribute("jobs"); //강제 형변환 | getAttribute는 객체값을 가져오기 때문에/jobs 값을 가지고 옴
+				for(JobsVO jobs : list) { %>
+				<!-- option tag 반복 / jobs 객체에서 list만큼 가지고 와서 반복 -->
+				<option value="<%=jobs.getJobId()%>" 
+				<% if(jobs.getJobId().equals(vo.getJobId())){ %>selected="selected" <% } %>>
+			<%=jobs.getJobTitle()%>
+			<% } %>
+	</select>
+	
+	
+** radio tag
+ 	<label>부서</label>
+	<% ArrayList<DeptVO> deptlist = (ArrayList<DeptVO>)request.getAttribute("depts");
+		for(DeptVO depts : deptlist) {%>
+		<input type=radio name="departmentId" value="<%=depts.getDeptId()%>" 
+		<% if(depts.getDeptId().equals(vo.getDepartmentId())){ %>checked="checked"<% } %>>
+		<%=depts.getDeptName()%>
+		<% } %>
+
+===
+		
+page를 다 그린 후에 script 태그에 넣어서 선택
+
+radio : 자기 부서에만 checked
+	=>id가 전부 동일하므로
+		querySelector 
+		
+		document.querySelector("[name=departmentId][value='10']").checked 의 값을 변경
+		
+===
+
+* 사원 삭제
+empDeleteServ 추가(서블릿)
+
+empUpdate.jsp >> 삭제 버튼 추가 / onclick empDelete()실행
+
+====
+
+forward : 모든 요청을 처리하고 최종 페이지 결과만 넘어감
+sendRedirect : 모든 요청을 처리하고 처음 페이지를 재요청
+
+====
+
+[게시판 만들기]
+1. DB table 참조 >> VO 만들기(Board VO)
+2. BoardDAO
+	조회 : SelectAll()
+	단건 조회 : SelectOne(id)
+	등록 : insert()
+	삭제 : delete(id)
+	수정 : update(id)
+3. Servlet
+	조회 : BoardListServ(boardList = 서블릿 매핑)
+	등록 : BoardInsertServ(board~~)
+	삭제 : BoardDeleteServ
+	수정 : BoardUpdateServ
+4. WEB-INF/jsp/board 에 jsp 파일
+	boardList.jsp
+	boardInsert.jsp
+	boardUpdate.jsp(insert 완성 후 복사해서 사용)	
+	delete는 페이지 따로 필요 x
+
+	
+	List에서 c:forEach => <%@ tag lib 추가(emplist.jsp 참고)
+	 사용하거나 <% for문 %> 아무거나 사용해도 ok
+	 
+	 
+	 
+insert에서 글번호는 서브쿼리 사용,
+작성시간은 현재시간 사용하도록
+조회수는 확인할 때 마다 count + 1 되도록?
+
+리스트 출력 : 내용 제외하고 나오고
+제목 클릭하면 세부사항 나오게 고치기
+
+==========
+
+EL & JSTL
+
+
+create table board (
+id      number primary key,
+title   varchar2(100),
+content varchar2(1000),
+writer  varchar2(20),
+rdt     date,
+hit     number );
+
+insert into board values ( 1, 'test1' ,'test1입니다.', 'hong', '2022-06-10', 10);
+insert into board values ( 2, 'test2' ,'test2입니다.', 'kang', '2022-07-05', 22);
+
+commit;
+
+select * from board;
+
+delete from board where id=3;

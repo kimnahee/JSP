@@ -17,6 +17,8 @@ function validationForm(){
 </head>
 
 <body>
+<%-- <%@ include file ="/WEB-INF/jsp/header.jsp" %> --%>
+<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 	<!-- 호출하는 서블릿 url만 적어줌(/제외) -->
 	<form name = "frm" action="DeptInsert" method="get">
 		부서번호 <input name="departmentId">

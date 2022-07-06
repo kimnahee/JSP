@@ -8,8 +8,11 @@ public class EmpVO {
 	private String email;
 	private String hireDate;
 	private String jobId;
+	private String departmentId;
 	
 	
+	
+
 	//생성자
 	public EmpVO() {
 		super();
@@ -75,6 +78,12 @@ public class EmpVO {
 	}
 	public void setSalary(String salary) {
 		this.salary = salary;
+	}
+	public String getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
 	}
 	
 }
