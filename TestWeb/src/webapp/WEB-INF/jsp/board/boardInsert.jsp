@@ -18,7 +18,7 @@
 </head>
 <body>
 	<form name="frm" action="boardInsert" method="post">
-		<div><label>번호</label><input name="id"></div>
+		<div><label>번호</label><input name="id" readonly="readonly"></div>
 		<div><label>제목</label><input name="title"></div>
 		<div><label>내용</label><input name="content"></div>
 		<div><label>글쓴이</label><input name="writer"></div>

@@ -18,6 +18,18 @@ public class BoardDeleteServ extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//List 에서 id를 받아오기
+		String delId = request.getParameter("id");
+		//게시글 단건 조회
+		//dao > delete 메소드
+		BoardDAO dao = new BoardDAO();
+		int cnt = dao.delete(delId);
+		
+		/*
+		 * response.getWriter() .append(cnt + "건 삭제완료");
+		 */
+		
+		response.sendRedirect("boardList");
+		
 		
 	}
 

@@ -61,15 +61,15 @@ public class BoardDAO extends DAO{
 		int cnt = 0;
 		try {
 			getConnect();
-			String sql = "insert into board(id, title, content, writer, rdt, hit) values(?, ?, ?, ?, ?, ?)";
+			String sql = "insert into board(id, title, content, writer, rdt, hit) "
+					+ "values((select max(id)+1 from board), ?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 			
-			psmt.setString(1, vo.getId());
-			psmt.setString(2, vo.getTitle());
-			psmt.setString(3, vo.getContent());
-			psmt.setString(4, vo.getWriter());
-			psmt.setString(5, vo.getRdt());
-			psmt.setString(6, vo.getHit());
+			psmt.setString(1, vo.getTitle());
+			psmt.setString(2, vo.getContent());
+			psmt.setString(3, vo.getWriter());
+			psmt.setString(4, vo.getRdt());
+			psmt.setString(5, vo.getHit());
 			
 			cnt = psmt.executeUpdate();
 		} catch(Exception e) {
@@ -96,10 +96,18 @@ public class BoardDAO extends DAO{
 		return cnt;
 	}
 	//수정
-	public int update() {
+	public int update(BoardVO vo) {
 		int cnt = 0;
 		try {
 			getConnect();
+			String sql = "update board set title = ?, content = ?, writer = ?"
+						 + " where id = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getTitle());
+			psmt.setString(2, vo.getContent());
+			psmt.setString(3, vo.getWriter());
+			psmt.setString(4, vo.getId());
+			cnt = psmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -91,10 +91,10 @@ sendRedirect : 모든 요청을 처리하고 처음 페이지를 재요청
 [게시판 만들기]
 1. DB table 참조 >> VO 만들기(Board VO)
 2. BoardDAO
-	조회 : SelectAll()
-	단건 조회 : SelectOne(id)
-	등록 : insert()
-	삭제 : delete(id)
+	조회 : SelectAll() => o
+	단건 조회 : SelectOne(id) => 서블릿 페이지 따로 만들어서..?
+	등록 : insert() => o
+	삭제 : delete(id) 
 	수정 : update(id)
 3. Servlet
 	조회 : BoardListServ(boardList = 서블릿 매핑)
@@ -119,6 +119,9 @@ insert에서 글번호는 서브쿼리 사용,
 
 리스트 출력 : 내용 제외하고 나오고
 제목 클릭하면 세부사항 나오게 고치기
+>> update에서 => form 으로 변경하기
+글내용
+
 
 ==========
 
