@@ -1,0 +1,100 @@
+** boardList
+
+1. 조회 & 제목 링크 => O
+2. 제목 링크를 누르면 readonly로 된 게시글이 보이고
+   수정/삭제 버튼 추가, 수정을 누르면 수정페이지(update)가 나오고 삭제를 누르면 delete(유지)
+3. css
+
+====================================
+
+conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
+"jdbc:oracle:thin:@localhost:1521:xe"
+ localhost에는 DB 서버 아이피를 적는다
+ ==> database의 물리적인 위치 의미
+ 
+
+1) 분석 => 요구사항 정리
+		  기능 정리
+		  
+2) 설계 => DB 설계
+		  사용자 인터페이스 설계
+		  기능 설계(psudo code or 순서도)
+		  
+ JSTL
+ **
+ <c:if test="조건" var="조건 처리 변수명" scope="범위">
+ <c:choose> => switch~case
+ <c:forEach>
+ 
+* FrontController
+요청(request) => controller
+==>
+적절한 모델(DAO)을 찾아 DB에서 결과를 가져옴
+==> 적절한 view(.jsp)를 찾아 client request에 응답
+
+모델 : 보통 DAO / 데이터를 vo 객체를 통해서 주고받음
+
+====
+
+url-pattern
+
+1. 디렉토리 패턴
+
+2. 확장자 패턴(**자주 사용함)
+	장점 : 요청을 한 곳에 모을 수 있음(.do 서블릿)
+	
+===========================
+	
+Maven Prj 생성
+
+pom.xml => jdk 버전 수정, dependencies => java servlet 추가(3.1버전) > maven repository
+
+webapp => web-inf lib 추가
+src main => java/resources 폴더 추가, build path 확인 
+web.xml  수정
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
+
+--------------------
+
+jstl 같은 library는 lib폴더에 추가, 아닌것은 maven repository에서 가져다 쓰면 됨
+복붙하고 jar build path 해줘야함 (maven)
+
+---------------------
+
+1. 조장 & 조명
+2. 진행할 프로젝트 
+	> 아이디어
+	> 기능
+	> 프로젝트명
+3. ~월요일, 공유폴더 확인(참고자료, 제출.할것)
+
+
+lombok library getter/setter 자동으로 생성해줌
+Interface Command(검색해보기)
+servlet request 객체와 response 객체를 받아와서 마음대로 쓸 수 있게 해주는 인터페이스
+클라이언트에서 request(요청하면) -> 서버에서 request, response, session 생성
+							  => 서버가 자동으로 생성해줌
+
+
+FrontController -> Servlet 파일
+doGet, doPost를 사용하지 않음 >> 모든 요청을 내가 받기 때문에
+init 과 service를 체크
+
+Servlet Life Cycle(서블릿 생명주기)
+	서블릿은 무조건 container에 올라간다(tomcat 동작 시)
+	서블릿 호출하면
+		~첫 번째~
+		init 호출(초기화)
+		service -> 결과 처리 후 반환
+		
+		톰캣이 종료되면 모두 destroy (검색)
+

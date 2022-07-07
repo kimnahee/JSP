@@ -18,16 +18,17 @@
 </head>
 <body>
 	<form name="frm" action="boardInsert" method="post">
-		<div><label>번호</label><input name="id" readonly="readonly"></div>
+		<!-- <div><label>번호</label><input name="id" readonly="readonly"></div> -->
 		<div><label>제목</label><input name="title"></div>
 		<div><label>내용</label><input name="content"></div>
 		<div><label>글쓴이</label><input name="writer"></div>
-		<div><label>작성시간</label><input name="rdt"></div>
+		<!-- <div><label>작성시간</label><input name="rdt" readonly="readonly"></div> -->
 		<div><label>조회수</label><input name="hit"></div>
 		<button type="button" onclick="submitForm()" >등록</button>
 	</form>
 <script>
 	function submitForm(){
+		alert('등록 완료');
 		frm.submit();		
 	}
 </script>

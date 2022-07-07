@@ -8,6 +8,30 @@
 <head>
 <meta charset="UTF-8">
 <title>boardList.jsp</title>
+<style>
+	table {
+		border-collapse: collapse;
+		width: 80%;
+	}
+	
+	table > thead{
+		background-color: navy;
+		color: white;
+		padding : 5px;
+	}
+	
+	table > thead > tr > th{
+		padding : 10px;
+	}
+	
+	tr{
+		padding : 10px;
+	}
+	
+	td{
+		padding : 10px;
+	}
+</style>
 </head>
 <body>
 	<h3>목록</h3>

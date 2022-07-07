@@ -62,14 +62,13 @@ public class BoardDAO extends DAO{
 		try {
 			getConnect();
 			String sql = "insert into board(id, title, content, writer, rdt, hit) "
-					+ "values((select max(id)+1 from board), ?, ?, ?, ?, ?)";
+					+ "values((select max(id)+1 from board), ?, ?, ?, sysdate, ?)";
 			psmt = conn.prepareStatement(sql);
 			
 			psmt.setString(1, vo.getTitle());
 			psmt.setString(2, vo.getContent());
 			psmt.setString(3, vo.getWriter());
-			psmt.setString(4, vo.getRdt());
-			psmt.setString(5, vo.getHit());
+			psmt.setString(4, vo.getHit());
 			
 			cnt = psmt.executeUpdate();
 		} catch(Exception e) {

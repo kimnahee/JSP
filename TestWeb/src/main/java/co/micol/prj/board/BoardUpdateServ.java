@@ -44,7 +44,7 @@ public class BoardUpdateServ extends HttpServlet {
 
 		BoardDAO dao = new BoardDAO();
 		int cnt = dao.update(vo);
-
+		response.sendRedirect("boardList");
 	}
 
 }
