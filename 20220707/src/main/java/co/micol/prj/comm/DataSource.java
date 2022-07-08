@@ -17,7 +17,7 @@ public class DataSource {
 		return dataSource;
 	}
 	
-	private Connection getConnection() {
+	public Connection getConnection() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "micol", "1234");

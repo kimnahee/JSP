@@ -46,6 +46,7 @@
 			<tr>
 			<td>${list.getId()}</td>
 			<td><a href="boardUpdate?id=${list.id}">${list.getTitle()}</a></td>
+			<!-- a에 boardSelect로 가는 링크 달아주기 -->
 			<%-- <td>${list.getTitle()}</td> --%>
 			<%-- <td>${list.getContent()}</td> --%>
 			<td>${list.getWriter()}</td>
